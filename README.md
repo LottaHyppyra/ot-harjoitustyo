@@ -1,7 +1,6 @@
 # Ohjelmistotekniikka, harjoitustyö, syksy 2022
 
 Tämä on kurssia **ohjelmistotekniikka** varten luotu *etärepositorio*
-Muuutos
 
 ## Tehtävät
 
