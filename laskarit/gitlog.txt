@@ -1,0 +1,103 @@
+commit 4c65f8ca6575ff766ee92f47a93c64364c2f8154
+Author: Lotta Hyppyrä <lotta@hyppyra.net>
+Date:   Tue Nov 1 19:47:50 2022 +0200
+
+    poistettu ja muutettu tiedostoja
+
+ tiedostoja/file2             | 0
+ tiedostoja/{file1 => file22} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit eb8726c5d917e7c64f11aba308cf3af383482b1f
+Author: Lotta Hyppyrä <lotta@hyppyra.net>
+Date:   Tue Nov 1 19:44:38 2022 +0200
+
+    tiedostoja luotu
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 5bf120e7c7dc7045997912d77836f2594aa015ab
+Author: Lotta Hyppyrä <lotta@hyppyra.net>
+Date:   Tue Nov 1 19:37:42 2022 +0200
+
+    muutettu tekstiä
+
+ eka.txt    | 7 ++++---
+ kolmas.txt | 1 +
+ 2 files changed, 5 insertions(+), 3 deletions(-)
+
+commit 1615797bae8d62cd7ff8b62c64621e7f2a7e46e2
+Author: Lotta Hyppyrä <lotta@hyppyra.net>
+Date:   Tue Nov 1 19:36:06 2022 +0200
+
+    muutettu tiedosto.txt nimi eka.txt
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 7e705ce704cf853e127e7c2e037c639dc52d9aa5
+Author: Lotta Hyppyrä <lotta@hyppyra.net>
+Date:   Tue Nov 1 19:34:31 2022 +0200
+
+    poistettu toinen.txt
+
+ toinen.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 19b40d18fb4c4c614d5869a17e7d4661288446cd
+Author: Lotta Hyppyrä <lotta@hyppyra.net>
+Date:   Tue Nov 1 19:32:53 2022 +0200
+
+    muutettu tekstiä tiedosto.txt
+
+ tiedosto.txt | 19 ++++++++++---------
+ 1 file changed, 10 insertions(+), 9 deletions(-)
+
+commit d8472bfd3634e49bd1ede071e4bc9f0fe862c6d0
+Author: Lotta Hyppyrä <lotta@hyppyra.net>
+Date:   Tue Nov 1 19:30:54 2022 +0200
+
+    lisätty tekstiä tiedosto.txt
+
+ tiedosto.txt | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
+
+commit b7622510cb280a9453fbc02241b3833119a0cc2d
+Author: Lotta Hyppyrä <lotta@hyppyra.net>
+Date:   Tue Nov 1 19:28:09 2022 +0200
+
+    stuff ja jokin.txt luotu
+
+ stuff/jokin.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit de2d7d82055dca490f43c79d5f9ec850e91c2a89
+Author: Lotta Hyppyrä <lotta@hyppyra.net>
+Date:   Tue Nov 1 19:26:34 2022 +0200
+
+    kolmas.txt luotu
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit b9870c38003f9f1ec68c2e273679b86e8a5bcb49
+Author: Lotta Hyppyrä <lotta@hyppyra.net>
+Date:   Tue Nov 1 19:23:56 2022 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit 150af78bb123c3c326406618201845b80c489031
+Author: Lotta Hyppyrä <lotta@hyppyra.net>
+Date:   Tue Nov 1 19:21:54 2022 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
