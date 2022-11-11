@@ -9,3 +9,7 @@ Tämä on kurssia **ohjelmistotekniikka** varten luotu *etärepositorio*
 [gitlog.txt](https://github.com/LottaHyppyra/ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
 
 [komentorivi.txt](https://github.com/LottaHyppyra/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
+
+### Viikko 2
+
+[testikattavuus.png](https://github.com/LottaHyppyra/ot-harjoitustyo/blob/master/laskarit/viikko2/testikattavuus.png)
