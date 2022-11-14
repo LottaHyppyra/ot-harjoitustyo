@@ -16,4 +16,4 @@ Tämä on kurssia **ohjelmistotekniikka** varten luotu *etärepositorio*
 
 ### Viikko 3
 
-[monopoli-luokkakaavio](https://github.com/LottaHyppyra/ot-harjoitustyo/blob/master/laskarit/viikko3/monopoli_kaavio.md)
+[monopoli_kaavio.md](https://github.com/LottaHyppyra/ot-harjoitustyo/blob/master/laskarit/viikko3/monopoli_kaavio.md)
