@@ -13,3 +13,7 @@ Tämä on kurssia **ohjelmistotekniikka** varten luotu *etärepositorio*
 ### Viikko 2
 
 [testikattavuus.png](https://github.com/LottaHyppyra/ot-harjoitustyo/blob/master/laskarit/viikko2/testikattavuus.png)
+
+### Viikko 3
+
+[monopoli-luokkakaavio](https://github.com/LottaHyppyra/ot-harjoitustyo/blob/master/laskarit/viikko3/monopoli_kaavio.md)
