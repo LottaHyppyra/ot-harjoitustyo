@@ -21,6 +21,12 @@ def main():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RIGHT:
                     player.move(1, 0)
+                if event.key == pygame.K_LEFT:
+                    player.move(-1, 0)
+                if event.key == pygame.K_UP:
+                    player.move(0, -1)
+                if event.key == pygame.K_DOWN:
+                    player.move(0, 1)
 
             if event.type == pygame.QUIT:
                 exit()
