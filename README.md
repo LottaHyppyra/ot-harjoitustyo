@@ -2,6 +2,10 @@
 
 Tämä on kurssia **ohjelmistotekniikka** varten luotu *etärepositorio*
 
+[tyoaikakirjanpito.md](https://github.com/LottaHyppyra/ot-harjoitustyo/blob/master/dokumentaatio/tyoaikakirjanpito.md)
+
+[vaatimusmaarittely.md](https://github.com/LottaHyppyra/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
+
 ## Tehtävät
 
 ### Viikko 1
