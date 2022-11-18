@@ -2,9 +2,9 @@
 
 Tämä on kurssia **ohjelmistotekniikka** varten luotu *etärepositorio*
 
-[tyoaikakirjanpito.md](https://github.com/LottaHyppyra/ot-harjoitustyo/blob/master/dokumentaatio/tyoaikakirjanpito.md)
+[tyoaikakirjanpito.md](https://github.com/LottaHyppyra/ot-harjoitustyo/blob/master/aavelabyrintti/dokumentaatio/tyoaikakirjanpito.md)
 
-[vaatimusmaarittely.md](https://github.com/LottaHyppyra/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
+[vaatimusmaarittely.md](https://github.com/LottaHyppyra/ot-harjoitustyo/blob/master/aavelabyrintti/dokumentaatio/vaatimusmaarittely.md)
 
 ## Tehtävät
 
