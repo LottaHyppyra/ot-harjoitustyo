@@ -1,6 +1,7 @@
 from map import Map
 from images.images import Images
 from player import Player
+from ghost import Ghost
 import pygame
 
 def main():
@@ -8,6 +9,7 @@ def main():
     map = Map()
     images = Images()
     player = Player(map)
+    ghost = Ghost(map)
     pics = images.download_images()
     scale = pics[0].get_width()
     screen_height = scale * map.height
@@ -21,12 +23,16 @@ def main():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RIGHT:
                     player.move(1, 0)
+                    ghost.move()
                 if event.key == pygame.K_LEFT:
                     player.move(-1, 0)
+                    ghost.move()
                 if event.key == pygame.K_UP:
                     player.move(0, -1)
+                    ghost.move()
                 if event.key == pygame.K_DOWN:
                     player.move(0, 1)
+                    ghost.move()
 
             if event.type == pygame.QUIT:
                 exit()
