@@ -8,5 +8,5 @@ class Images():
     def download_images(self):
         images = []
         for name in self.file_names:
-            images.append(pygame.image.load("images/" + name + ".png"))
+            images.append(pygame.image.load("src/images/" + name + ".png"))
         return images
