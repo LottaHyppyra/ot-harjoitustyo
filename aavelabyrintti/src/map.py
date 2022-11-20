@@ -33,8 +33,10 @@ class Map():
 
     def move_player(self, x, y):
         pos_now = self.get_player_coords()
-        self.map[pos_now[1]][pos_now[0]] = 0
-        self.map[pos_now[1] + y][pos_now[0] + x] = 2
+
+        if self.map[pos_now[1] + y][pos_now[0] + x] != 1:
+            self.map[pos_now[1]][pos_now[0]] = 0
+            self.map[pos_now[1] + y][pos_now[0] + x] = 2
 
     def is_wall(self, x, y):
         return self.map[y][x] == 1
