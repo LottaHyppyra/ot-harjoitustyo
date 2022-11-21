@@ -33,39 +33,3 @@ class Map():
         
         self.height = len(self.map)
         self.width = len(self.map[0])
-
-    def get_player_coords(self):
-        for y in range(len(self.map)):
-            for x in range(len(self.map[y])):
-                if self.map[y][x] == 2:
-                    return (x, y)
-
-    def get_ghost_coords(self):
-        for y in range(len(self.map)):
-            for x in range(len(self.map[y])):
-                if self.map[y][x] == 3:
-                    return (x, y)    
-
-    def move_player(self, x, y):
-        pos_now = self.get_player_coords()
-
-        if self.map[pos_now[1] + y][pos_now[0] + x] != 1:
-            self.map[pos_now[1]][pos_now[0]] = 0
-            self.map[pos_now[1] + y][pos_now[0] + x] = 2
-
-    def move_ghost(self):
-        pos_now = self.get_ghost_coords()
-        not_moved = True
-        
-        while not_moved:
-            x = random.randrange(-1,2)
-            y = random.randrange(-1, 2)
-            if self.map[pos_now[1] + y][pos_now[0] + x] != 1:
-                self.map[pos_now[1]][pos_now[0]] = 0
-                self.map[pos_now[1] + y][pos_now[0] + x] = 3
-                not_moved = False
-            continue
-        
-
-    def is_wall(self, x, y):
-        return self.map[y][x] == 1
