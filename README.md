@@ -1,23 +1,31 @@
-# Ohjelmistotekniikka, harjoitustyö, syksy 2022
+# Aavelabyrintti
 
-Tämä on kurssia **ohjelmistotekniikka** varten luotu *etärepositorio*
+Aavelabyrintissa pelaajan tulee löytää ulos labyrintista jäämättä kiinni siellä liikkuvalle aaveelle. 
 
-[tyoaikakirjanpito.md](https://github.com/LottaHyppyra/ot-harjoitustyo/blob/master/aavelabyrintti/dokumentaatio/tyoaikakirjanpito.md)
+## Dokumentaatio
 
-[vaatimusmaarittely.md](https://github.com/LottaHyppyra/ot-harjoitustyo/blob/master/aavelabyrintti/dokumentaatio/vaatimusmaarittely.md)
+- [Työaikakirjanpito.md](https://github.com/LottaHyppyra/ot-harjoitustyo/blob/master/aavelabyrintti/dokumentaatio/tyoaikakirjanpito.md)
 
-## Tehtävät
+- [Vaatimusmaarittely.md](https://github.com/LottaHyppyra/ot-harjoitustyo/blob/master/aavelabyrintti/dokumentaatio/vaatimusmaarittely.md)
 
-### Viikko 1
+- [Changelog](https://github.com/LottaHyppyra/ot-harjoitustyo/blob/master/aavelabyrintti/dokumentaatio/changelog.md)
 
-[gitlog.txt](https://github.com/LottaHyppyra/ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
+## Komentorivitoiminnot
 
-[komentorivi.txt](https://github.com/LottaHyppyra/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
+Ohjelman suorittaminen:
 
-### Viikko 2
+```bash
+poetry run invoke start
+```
 
-[testikattavuus.png](https://github.com/LottaHyppyra/ot-harjoitustyo/blob/master/laskarit/viikko2/testikattavuus.png)
+Testien ajaminen:
 
-### Viikko 3
+```bash
+poetry run invoke test
+```
 
-[monopoli_kaavio.md](https://github.com/LottaHyppyra/ot-harjoitustyo/blob/master/laskarit/viikko3/monopoli_kaavio.md)
+Testikattavuusraportti: 
+
+```bash
+poetry run coverage-report
+```
