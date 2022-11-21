@@ -1,4 +1,4 @@
-from map import Map
+from entities.map_list import *
 from images.images import Images
 from player import Player
 from ghost import Ghost
@@ -6,14 +6,14 @@ import pygame
 
 def main():
     pygame.init()
-    map = Map()
+    map = map1
     images = Images()
-    player = Player(map)
-    ghost = Ghost(map)
+    player = Player(map1)
+    ghost = Ghost(map1)
     pics = images.download_images()
     scale = pics[0].get_width()
-    screen_height = scale * map.height
-    screen_width = scale * map.width
+    screen_height = scale * len(map)
+    screen_width = scale * len(map[0])
     screen = pygame.display.set_mode((screen_width, screen_height))
     pygame.display.set_caption("Aavelabyrintti")
 
@@ -38,9 +38,9 @@ def main():
                 exit()
 
         screen.fill((0,0,0))
-        for y in range(map.height):
-            for x in range(map.width):
-                box = map.map[y][x]
+        for y in range(len(map)):
+            for x in range(len(map[0])):
+                box = map[y][x]
                 screen.blit(pics[box], (x * scale, y * scale))
 
         pygame.display.flip()
