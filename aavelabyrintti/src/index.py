@@ -16,6 +16,9 @@ def main():
     screen_width = scale * len(map[0])
     screen = pygame.display.set_mode((screen_width, screen_height))
     pygame.display.set_caption("Aavelabyrintti")
+    black_screen = pygame.Surface((screen_width, screen_height))
+    black_screen.set_colorkey('RED')
+
 
     while True:
 
@@ -42,8 +45,12 @@ def main():
             for x in range(len(map[0])):
                 box = map[y][x]
                 screen.blit(pics[box], (x * scale, y * scale))
-
+        
+        pygame.Surface.fill(black_screen, (0, 0, 0))
+        pygame.draw.circle(black_screen, ('RED'), ((player.get_coords()[0] * pics[2].get_width() + pics[2].get_width() / 2), (player.get_coords()[1] * pics[2].get_height() + pics[2].get_height() / 2)), pics[0].get_width() * 2.5)
+        screen.blit(black_screen, (0, 0))
         pygame.display.flip()
+        
 
 if __name__ == "__main__":
     main()
