@@ -23,19 +23,25 @@ def main():
     while True:
 
         for event in pygame.event.get():
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_RIGHT:
-                    player.move(1, 0)
-                if event.key == pygame.K_LEFT:
-                    player.move(-1, 0)
-                if event.key == pygame.K_UP:
-                    player.move(0, -1)
-                if event.key == pygame.K_DOWN:
-                    player.move(0, 1)
+            if player.get_coords() != None:
+                if event.type == pygame.KEYDOWN:
+                    moved = True
+                    if event.key == pygame.K_RIGHT:
+                        player.move(1, 0)
+                    elif event.key == pygame.K_LEFT:
+                        player.move(-1, 0)
+                    elif event.key == pygame.K_UP:
+                        player.move(0, -1)
+                    elif event.key == pygame.K_DOWN:
+                        player.move(0, 1)
+                    else:
+                        moved = False
 
-                ghost.move()
-                if player.get_coords() == None:
-                    exit()
+                    if moved:
+                        ghost.move(player.get_coords())
+
+                    #if player.get_coords() == None:
+                    #    exit()
 
             if event.type == pygame.QUIT:
                 exit()
@@ -46,8 +52,12 @@ def main():
                 box = map[y][x]
                 screen.blit(pics[box], (x * scale, y * scale))
         
-        pygame.Surface.fill(black_screen, (0, 0, 0))
-        pygame.draw.circle(black_screen, ('RED'), ((player.get_coords()[0] * pics[2].get_width() + pics[2].get_width() / 2), (player.get_coords()[1] * pics[2].get_height() + pics[2].get_height() / 2)), pics[0].get_width() * 2.5)
+        if player.get_coords() != None:
+            pygame.Surface.fill(black_screen, (0, 0, 0))
+            pygame.draw.circle(black_screen, ('RED'), ((player.get_coords()[0] * pics[2].get_width() + pics[2].get_width() / 2), (player.get_coords()[1] * pics[2].get_height() + pics[2].get_height() / 2)), pics[0].get_width() * 2.5)
+        else:
+            pygame.Surface.fill(black_screen, ('RED'))
+
         screen.blit(black_screen, (0, 0))
         pygame.display.flip()
         
