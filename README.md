@@ -27,5 +27,5 @@ poetry run invoke test
 Testikattavuusraportti: 
 
 ```bash
-poetry run coverage-report
+poetry run invoke coverage-report
 ```
