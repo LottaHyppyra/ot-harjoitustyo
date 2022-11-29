@@ -8,3 +8,4 @@
 | 21.11. | 3    | koodin refaktorointia ja ensimmäiset testit |
 | 25.11. | 2    | pelaajan näkökentän rajaaminen |
 | 26.11. | 1    | aave lähtee seuraamaan pelaajaa |
+| 29.11. | 2    | maaliruutu ja koodin siistimistä |
