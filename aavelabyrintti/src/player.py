@@ -4,15 +4,15 @@ class Player():
         self.inventory = []
 
     def get_coords(self):
-        for y in range(len(self.map)):
-            for x in range(len(self.map[y])):
-                if self.map[y][x] == 2:
-                    return (x, y)
-        return None 
+        for y_coord in range(len(self.map)):
+            for x_coord in range(len(self.map[y_coord])):
+                if self.map[y_coord][x_coord] == 2:
+                    return (x_coord, y_coord)
+        return None
 
-    def move(self, x, y):
+    def move(self, x_diff, y_diff):
         pos_now = self.get_coords()
 
-        if self.map[pos_now[1] + y][pos_now[0] + x] != 1 and self.map[pos_now[1] + y][pos_now[0] + x] != 3:
+        if self.map[pos_now[1] + y_diff][pos_now[0] + x_diff] == 0:
             self.map[pos_now[1]][pos_now[0]] = 0
-            self.map[pos_now[1] + y][pos_now[0] + x] = 2
+            self.map[pos_now[1] + y_diff][pos_now[0] + x_diff] = 2

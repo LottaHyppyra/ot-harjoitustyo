@@ -1,8 +1,8 @@
+import pygame
 from entities.map_list import *
 from images.images import Images
 from player import Player
 from ghost import Ghost
-import pygame
 
 def main():
     pygame.init()
@@ -19,11 +19,10 @@ def main():
     black_screen = pygame.Surface((screen_width, screen_height))
     black_screen.set_colorkey('RED')
 
-
     while True:
 
         for event in pygame.event.get():
-            if player.get_coords() != None:
+            if player.get_coords() is not None:
                 if event.type == pygame.KEYDOWN:
                     moved = True
                     if event.key == pygame.K_RIGHT:
@@ -40,27 +39,33 @@ def main():
                     if moved:
                         ghost.move(player.get_coords())
 
-                    #if player.get_coords() == None:
+                    # if player.get_coords() == None:
                     #    exit()
 
             if event.type == pygame.QUIT:
                 exit()
 
-        screen.fill((0,0,0))
+        screen.fill((0, 0, 0))
         for y in range(len(map)):
             for x in range(len(map[0])):
                 box = map[y][x]
                 screen.blit(pics[box], (x * scale, y * scale))
-        
-        if player.get_coords() != None:
+
+        if player.get_coords() is not None:
             pygame.Surface.fill(black_screen, (0, 0, 0))
-            pygame.draw.circle(black_screen, ('RED'), ((player.get_coords()[0] * pics[2].get_width() + pics[2].get_width() / 2), (player.get_coords()[1] * pics[2].get_height() + pics[2].get_height() / 2)), pics[0].get_width() * 2.5)
+            pygame.draw.circle(
+                black_screen,
+                ('RED'),
+                ((player.get_coords()[0] * pics[2].get_width() + pics[2].get_width() / 2),
+                (player.get_coords()[1] * pics[2].get_height() + pics[2].get_height() / 2)),
+                pics[0].get_width() * 2.5
+                )
         else:
             pygame.Surface.fill(black_screen, ('RED'))
 
         screen.blit(black_screen, (0, 0))
         pygame.display.flip()
-        
+
 
 if __name__ == "__main__":
     main()
