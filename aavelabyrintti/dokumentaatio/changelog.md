@@ -5,3 +5,6 @@
 - Pelaaja voi liikkya labyrintissa.
 - Aave liikkuu labyrintissa pelaajan liikkuessa.
 - Peli päättyy jos aave siirtyy samaan ruutuun pelaajan kanssa.
+- Pelaaja näkee vain pienen alueen ympärillään. 
+- Aave lähtee seuraamaan pelaajaa kun etäisyys on kaksi ruutua tai vähemmän.
+- Peli päättyy, kun pelaaja siirtyy tähdellä merkittyyn maaliruutuun.  
