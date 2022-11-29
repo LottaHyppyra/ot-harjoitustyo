@@ -10,6 +10,8 @@ Aavelabyrintissa pelaajan tulee löytää ulos labyrintista jäämättä kiinni 
 
 - [Changelog](https://github.com/LottaHyppyra/ot-harjoitustyo/blob/master/aavelabyrintti/dokumentaatio/changelog.md)
 
+- [Arkkitehtuuri](https://github.com/LottaHyppyra/ot-harjoitustyo/blob/master/aavelabyrintti/dokumentaatio/arkkitehtuuri.md)
+
 ## Komentorivitoiminnot
 
 Ohjelman suorittaminen:
