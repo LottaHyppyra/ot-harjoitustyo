@@ -31,3 +31,8 @@ Testikattavuusraportti:
 ```bash
 poetry run invoke coverage-report
 ```
+Pylint:
+
+```bash
+poetry run invoke lint
+```
