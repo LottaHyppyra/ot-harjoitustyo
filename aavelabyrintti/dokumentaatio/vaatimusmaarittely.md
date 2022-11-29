@@ -9,17 +9,17 @@ Aavelabyrintti -pelin ideana on löytää ulos labyrintistä jäämättä kiinni
 - Pelin alussa kysytään pelaajan nimeä.
 - Pelin aikana pidetään kirjaa pelaajan siirtymien määrästä tulostaulua varten. 
 - Tulostaululla näkyy pienimmällä määrällä siirtymiä labyrintista ulos löytäneet pelaajat. 
-- Pelaaja näkee vain pienen alueen ympärillään. 
-- Pelaaja voi liikkua eteen, taakse, oikealla ja vasemmalle vapaisiin ruutuihin, mutta ei ristiin.
+- Pelaaja näkee vain pienen alueen ympärillään. TEHTY.
+- Pelaaja voi liikkua eteen, taakse, oikealla ja vasemmalle vapaisiin ruutuihin, mutta ei ristiin. TEHTY.
 - Pelaajalla on alussa mukanaan suitsuke, jolla voi karkottaa aaveen hetkellisesti.
 - Pelaaja voi löytää ja kerätä suitsukkeita labyrintista. 
 - Aave lähtee aina liikkeelle sattumanvaraisesta ruudusta. 
-- Aave liikkuu labyrintissa sattumanvaraisesti vapaisiin ruutuihin yhtä aikaa pelaajan kanssa. 
-- Aave voi liikkua myös ristiin, mutta ei kulkea seinien läpi. 
-- Jos aave on tarpeeksi lähellä pelaajaa eli tämän näkökentässä, lähtee aave kulkemaan kohti pelaajaa. 
+- Aave liikkuu labyrintissa sattumanvaraisesti vapaisiin ruutuihin yhtä aikaa pelaajan kanssa. TEHTY.
+- Aave voi liikkua myös ristiin, mutta ei kulkea seinien läpi. TEHTY.
+- Jos aave on tarpeeksi lähellä pelaajaa eli tämän näkökentässä, lähtee aave kulkemaan kohti pelaajaa. TEHTY.
 - Jos pelaaja käyttää suitsukkeen, pysähtyy aave muutaman kierroksen ajaksi ja lähtee sitten taas jatkamaan sattumanvaraista liikkumista, jos pelaaja on ehtinyt saamaan aaveen pois näkökentästään.
-- Jos aave saa pelaajan kiinni eli siirtyy samaan ruutuun, pelaaja häviää pelin. 
-- Pelaaja voittaa pelin löytäessään tien ulos labyrintistä. 
+- Jos aave saa pelaajan kiinni eli siirtyy samaan ruutuun, pelaaja häviää pelin. TEHTY.
+- Pelaaja voittaa pelin löytäessään tien ulos labyrintistä. TEHTY.
 
 ## Jatkokehitysideoita
 
