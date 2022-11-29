@@ -36,11 +36,8 @@ def main():
                     else:
                         moved = False
 
-                    if moved:
+                    if moved and player.get_coords() is not None:
                         ghost.move(player.get_coords())
-
-                    # if player.get_coords() == None:
-                    #    exit()
 
             if event.type == pygame.QUIT:
                 exit()
@@ -60,6 +57,7 @@ def main():
                 (player.get_coords()[1] * pics[2].get_height() + pics[2].get_height() / 2)),
                 pics[0].get_width() * 2.5
                 )
+
         else:
             pygame.Surface.fill(black_screen, ('RED'))
 

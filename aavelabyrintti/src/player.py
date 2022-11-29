@@ -16,3 +16,6 @@ class Player():
         if self.map[pos_now[1] + y_diff][pos_now[0] + x_diff] == 0:
             self.map[pos_now[1]][pos_now[0]] = 0
             self.map[pos_now[1] + y_diff][pos_now[0] + x_diff] = 2
+
+        if self.map[pos_now[1] + y_diff][pos_now[0] + x_diff] == 4:
+            self.map[pos_now[1]][pos_now[0]] = 0
