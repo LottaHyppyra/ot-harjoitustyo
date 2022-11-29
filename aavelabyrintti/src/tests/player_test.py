@@ -1,15 +1,16 @@
 import unittest
 from player import Player
 
+
 class TestPlayer(unittest.TestCase):
     def setUp(self):
 
-        MAP =  [[1, 1, 1, 1, 1, 1, 1],
-                [1, 2, 0, 0, 0, 0, 1],
-                [1, 0, 0, 0, 0, 0, 1],
-                [1, 0, 0, 0, 0, 0, 1],
-                [1, 0, 0, 0, 0, 0, 1],
-                [1, 1, 1, 1, 1, 1, 1],]
+        MAP = [[1, 1, 1, 1, 1, 1, 1],
+               [1, 2, 0, 0, 0, 0, 1],
+               [1, 0, 0, 0, 0, 0, 1],
+               [1, 0, 0, 0, 0, 0, 1],
+               [1, 0, 0, 0, 0, 0, 1],
+               [1, 1, 1, 1, 1, 1, 1],]
 
         self.test_player = Player(MAP)
 
@@ -26,7 +27,7 @@ class TestPlayer(unittest.TestCase):
 
     def test_returns_none_when_no_player_on_the_map(self):
 
-        MAP2 =  [[1, 1, 1, 1, 1, 1, 1],
+        MAP2 = [[1, 1, 1, 1, 1, 1, 1],
                 [1, 0, 0, 0, 0, 0, 1],
                 [1, 0, 0, 0, 0, 0, 1],
                 [1, 0, 0, 0, 0, 0, 1],
