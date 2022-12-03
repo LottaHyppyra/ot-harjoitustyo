@@ -1,5 +1,6 @@
 import random
 import math
+from entities.constants import *
 
 class Ghost():
     def __init__(self, map):
@@ -8,7 +9,7 @@ class Ghost():
     def get_coords(self):
         for y_coord in range(len(self.map)):
             for x_coord in range(len(self.map[y_coord])):
-                if self.map[y_coord][x_coord] == 3:
+                if self.map[y_coord][x_coord] == GHOST:
                     return (x_coord, y_coord)
 
     def distance(self, ghost_x, ghost_y, player_x, player_y):
@@ -32,14 +33,14 @@ class Ghost():
                             new_coords = (pos_now[0] + x_coord, pos_now[1] + y_coord)
                             min_distance = distance
 
-            self.map[pos_now[1]][pos_now[0]] = 0
-            self.map[new_coords[1]][new_coords[0]] = 3
+            self.map[pos_now[1]][pos_now[0]] = FLOOR
+            self.map[new_coords[1]][new_coords[0]] = GHOST
             not_moved = False
 
         while not_moved:
             x_diff = random.randrange(-1, 2)
             y_diff = random.randrange(-1, 2)
-            if self.map[pos_now[1] + y_diff][pos_now[0] + x_diff] != 1:
-                self.map[pos_now[1]][pos_now[0]] = 0
-                self.map[pos_now[1] + y_diff][pos_now[0] + x_diff] = 3
+            if self.map[pos_now[1] + y_diff][pos_now[0] + x_diff] != WALL:
+                self.map[pos_now[1]][pos_now[0]] = FLOOR
+                self.map[pos_now[1] + y_diff][pos_now[0] + x_diff] = GHOST
                 not_moved = False
