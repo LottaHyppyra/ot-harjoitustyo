@@ -26,10 +26,21 @@ class Game():
         click = False
         while True:
             self.screen.fill((255, 255, 255))
-            play_button = pygame.Rect(self.screen_width / 2 - 150, 100, 300, 100)
+
+            play_button = pygame.Rect(self.screen_width / 2 - 150, self.screen_height / 3 - 50, 300, 100)
             pygame.draw.rect(self.screen, (0, 0, 0), play_button)
-            text_img = self.font.render('PLAY', True, 'GREEN')
-            self.screen.blit(text_img, (self.screen_width / 2 - text_img.get_width() / 2, 135))
+            play_text_img = self.font.render('PELAA', True, 'GREEN')
+            self.screen.blit(play_text_img, (self.screen_width / 2 - play_text_img.get_width() / 2, self.screen_height / 3 - 15))
+
+            rules_button = pygame.Rect(self.screen_width / 2 - 150, self.screen_height / 2 - 50, 300, 100)
+            pygame.draw.rect(self.screen, (0, 0, 0), rules_button)
+            rules_text_img = self.font.render('SÄÄNNÖT', True, 'GREEN')
+            self.screen.blit(rules_text_img, (self.screen_width / 2 - rules_text_img.get_width() / 2, self.screen_height / 2 - 15))
+
+            leaderboard_button = pygame.Rect(self.screen_width / 2 - 150, self.screen_height / 3 * 2 - 50, 300, 100)
+            pygame.draw.rect(self.screen, (0, 0, 0), leaderboard_button)
+            leaderboard_text_img = self.font.render('TULOSTAULU', True, 'GREEN')
+            self.screen.blit(leaderboard_text_img, (self.screen_width / 2 - leaderboard_text_img.get_width() / 2, self.screen_height / 3 * 2 - 15))
 
             if play_button.collidepoint(pygame.mouse.get_pos()):
                 if click:
