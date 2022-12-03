@@ -11,3 +11,7 @@
 - Pelaaja näkee vain pienen alueen ympärillään. 
 - Aave lähtee seuraamaan pelaajaa kun etäisyys on kaksi ruutua tai vähemmän.
 - Peli päättyy, kun pelaaja siirtyy tähdellä merkittyyn maaliruutuun.  
+
+## Viikko 5
+
+- Main menu lisätty.
