@@ -7,64 +7,89 @@ from ghost import Ghost
 class Game():
 
     def __init__(self) -> None:
-        pass
-
-    def play(self):
         pygame.init()
-        map = map1
-        images = Images()
-        player = Player(map1)
-        ghost = Ghost(map1)
-        pics = images.download_images()
-        scale = pics[0].get_width()
-        screen_height = scale * len(map)
-        screen_width = scale * len(map[0])
-        screen = pygame.display.set_mode((screen_width, screen_height))
+        self.map = map1
+        self.images = Images()
+        self.player = Player(map1)
+        self.ghost = Ghost(map1)
+        self.pics = self.images.download_images()
+        self.scale = self.pics[0].get_width()
+        self.screen_height = self.scale * len(self.map)
+        self.screen_width = self.scale * len(self.map[0])
+        self.screen = pygame.display.set_mode((self.screen_width, self.screen_height))
         pygame.display.set_caption("Aavelabyrintti")
-        black_screen = pygame.Surface((screen_width, screen_height))
-        black_screen.set_colorkey('RED')
-
+        self.black_screen = pygame.Surface((self.screen_width, self.screen_height))
+        self.black_screen.set_colorkey('RED')
+        self.font = pygame.font.SysFont(None, 50)
+        
+    def main_menu(self):
+        click = False
         while True:
+            self.screen.fill((255, 255, 255))
+            play_button = pygame.Rect(self.screen_width / 2 - 150, 100, 300, 100)
+            pygame.draw.rect(self.screen, (0, 0, 0), play_button)
+            text_img = self.font.render('PLAY', True, 'GREEN')
+            self.screen.blit(text_img, (self.screen_width / 2 - text_img.get_width() / 2, 135))
+
+            if play_button.collidepoint(pygame.mouse.get_pos()):
+                if click:
+                    self.play()
+
+            click = False
 
             for event in pygame.event.get():
-                if player.get_coords() is not None:
-                    if event.type == pygame.KEYDOWN:
-                        moved = True
-                        if event.key == pygame.K_RIGHT:
-                            player.move(1, 0)
-                        elif event.key == pygame.K_LEFT:
-                            player.move(-1, 0)
-                        elif event.key == pygame.K_UP:
-                            player.move(0, -1)
-                        elif event.key == pygame.K_DOWN:
-                            player.move(0, 1)
-                        else:
-                            moved = False
-
-                        if moved and player.get_coords() is not None:
-                            ghost.move(player.get_coords())
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if event.button == 1:
+                        click = True
 
                 if event.type == pygame.QUIT:
                     exit()
 
-            screen.fill((0, 0, 0))
-            for y in range(len(map)):
-                for x in range(len(map[0])):
-                    box = map[y][x]
-                    screen.blit(pics[box], (x * scale, y * scale))
+            pygame.display.flip()
 
-            if player.get_coords() is not None:
-                pygame.Surface.fill(black_screen, (0, 0, 0))
+    def play(self):
+
+        while True:
+
+            for event in pygame.event.get():
+                if self.player.get_coords() is not None:
+                    if event.type == pygame.KEYDOWN:
+                        moved = True
+                        if event.key == pygame.K_RIGHT:
+                            self.player.move(1, 0)
+                        elif event.key == pygame.K_LEFT:
+                            self.player.move(-1, 0)
+                        elif event.key == pygame.K_UP:
+                            self.player.move(0, -1)
+                        elif event.key == pygame.K_DOWN:
+                            self.player.move(0, 1)
+                        else:
+                            moved = False
+
+                        if moved and self.player.get_coords() is not None:
+                            self.ghost.move(self.player.get_coords())
+
+                if event.type == pygame.QUIT:
+                    exit()
+
+            self.screen.fill((0, 0, 0))
+            for y in range(len(self.map)):
+                for x in range(len(self.map[0])):
+                    box = self.map[y][x]
+                    self.screen.blit(self.pics[box], (x * self.scale, y * self.scale))
+
+            if self.player.get_coords() is not None:
+                pygame.Surface.fill(self.black_screen, (0, 0, 0))
                 pygame.draw.circle(
-                    black_screen,
+                    self.black_screen,
                     ('RED'),
-                    ((player.get_coords()[0] * pics[2].get_width() + pics[2].get_width() / 2),
-                    (player.get_coords()[1] * pics[2].get_height() + pics[2].get_height() / 2)),
-                    pics[0].get_width() * 2.5
+                    ((self.player.get_coords()[0] * self.pics[2].get_width() + self.pics[2].get_width() / 2),
+                    (self.player.get_coords()[1] * self.pics[2].get_height() + self.pics[2].get_height() / 2)),
+                    self.pics[0].get_width() * 2.5
                     )
 
             else:
-                pygame.Surface.fill(black_screen, ('RED'))
+                pygame.Surface.fill(self.black_screen, ('RED'))
 
-            screen.blit(black_screen, (0, 0))
+            self.screen.blit(self.black_screen, (0, 0))
             pygame.display.flip()

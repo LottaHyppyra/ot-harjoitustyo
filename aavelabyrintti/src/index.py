@@ -3,7 +3,7 @@ from ui.main import Game
 
 def main():
     game = Game()
-    game.play()
+    game.main_menu()
 
 if __name__ == "__main__":
     main()
