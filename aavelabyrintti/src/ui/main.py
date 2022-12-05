@@ -119,12 +119,18 @@ class Game():
                     self.lost()
 
             self.screen.blit(self.black_screen, (0, 0))
+            self.player_inventory()
             pygame.display.flip()
 
+    def player_inventory(self):
+        smudges = self.player.count_smudges()
+        smudges_text_img = self.font.render('Suitsukkeita: ' + str(smudges), True, 'GREEN')
+        self.screen.blit(smudges_text_img, (60, self.screen_height - 50))
+
     def won(self):
-            won_text_img = self.font.render('VOITIT PELIN', True, 'GREEN')
-            self.screen.blit(won_text_img, (self.screen_width / 2 - won_text_img.get_width() / 2, self.screen_height - 50))
+            won_text_img = self.font.render('Voitit pelin', True, 'GREEN')
+            self.screen.blit(won_text_img, (self.screen_width - 60 - won_text_img.get_width(), self.screen_height - 50))
 
     def lost(self):
-            lost_text_img = self.font.render('HÄVISIT PELIN', True, 'GREEN')
-            self.screen.blit(lost_text_img, (self.screen_width / 2 - lost_text_img.get_width() / 2, self.screen_height - 50))
+            lost_text_img = self.font.render('Hävisit pelin', True, 'GREEN')
+            self.screen.blit(lost_text_img, (self.screen_width - 60 - lost_text_img.get_width(), self.screen_height - 50))

@@ -36,3 +36,6 @@ class Player():
         
         self.inventory -= 1
         return True
+
+    def count_smudges(self):
+        return self.inventory
