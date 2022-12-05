@@ -59,26 +59,38 @@ class Game():
             pygame.display.flip()
 
     def play(self):
-
+        not_smudged = True
+        counter = 0
+        is_won = False
         while True:
 
             for event in pygame.event.get():
                 if self.player.get_coords() is not None:
                     if event.type == pygame.KEYDOWN:
                         moved = True
+                        if event.key == pygame.K_1:
+                            if self.player.use_smudge():
+                                not_smudged = False
                         if event.key == pygame.K_RIGHT:
-                            self.player.move(1, 0)
+                            is_won = self.player.move(1, 0)
                         elif event.key == pygame.K_LEFT:
-                            self.player.move(-1, 0)
+                            is_won = self.player.move(-1, 0)
                         elif event.key == pygame.K_UP:
-                            self.player.move(0, -1)
+                            is_won = self.player.move(0, -1)
                         elif event.key == pygame.K_DOWN:
-                            self.player.move(0, 1)
+                            is_won = self.player.move(0, 1)
                         else:
                             moved = False
 
-                        if moved and self.player.get_coords() is not None:
+                        if not_smudged and moved and self.player.get_coords() is not None:
                             self.ghost.move(self.player.get_coords())
+
+                        if not_smudged is False:
+                            counter += 1
+
+                        if counter == 4:
+                            not_smudged = True
+                            counter = 0
 
                 if event.type == pygame.QUIT:
                     exit()
@@ -101,6 +113,18 @@ class Game():
 
             else:
                 pygame.Surface.fill(self.black_screen, ('RED'))
+                if is_won:
+                    self.won()
+                else:
+                    self.lost()
 
             self.screen.blit(self.black_screen, (0, 0))
             pygame.display.flip()
+
+    def won(self):
+            won_text_img = self.font.render('VOITIT PELIN', True, 'GREEN')
+            self.screen.blit(won_text_img, (self.screen_width / 2 - won_text_img.get_width() / 2, self.screen_height - 50))
+
+    def lost(self):
+            lost_text_img = self.font.render('HÄVISIT PELIN', True, 'GREEN')
+            self.screen.blit(lost_text_img, (self.screen_width / 2 - lost_text_img.get_width() / 2, self.screen_height - 50))
