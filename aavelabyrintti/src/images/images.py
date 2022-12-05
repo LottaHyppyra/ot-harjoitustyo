@@ -4,7 +4,7 @@ import pygame
 class Images():
 
     def __init__(self):
-        self.file_names = ["floor", "wall", "player", "ghost", "finish"]
+        self.file_names = ["floor", "wall", "player", "ghost", "finish", "smudge"]
 
     def download_images(self):
         images = []
