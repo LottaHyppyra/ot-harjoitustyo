@@ -15,3 +15,8 @@
 ## Viikko 5
 
 - Main menu lisätty.
+- Ohjeet lisätty.
+- Pelaaja voi kerätä suitsukkeita aaveen pysäyttämiseksi.
+- Suitsukkeen käyttäminen pysäyttää aaven hetkellisesti.
+- Pelaajan siirrot lasketaan. 
+- Aave lähtee liikkeelle satunnaisesti ruudusta eikä aina samasta kohdasta.

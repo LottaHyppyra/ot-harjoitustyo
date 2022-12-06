@@ -11,3 +11,5 @@
 | 26.11. | 1    | aave lähtee seuraamaan pelaajaa |
 | 29.11. | 2    | maaliruutu ja koodin siistimistä |
 |  3.12. | 2    | refaktorointia, main menu, play button |
+|  5.12. | 2    | lisätty suitsukkeet |
+|  6.12. | 5    | UI:n parantelua, ohjeet sivu, lisää testejä |
