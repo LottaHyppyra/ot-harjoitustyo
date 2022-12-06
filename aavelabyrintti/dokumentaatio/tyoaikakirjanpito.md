@@ -13,3 +13,4 @@
 |  3.12. | 2    | refaktorointia, main menu, play button |
 |  5.12. | 2    | lisätty suitsukkeet |
 |  6.12. | 5    | UI:n parantelua, ohjeet sivu, lisää testejä |
+| yht.   | 26   | |
