@@ -113,7 +113,7 @@ class Game():
         while True:
             self.screen.fill((227, 227, 227))
 
-            coming_soon_text_img = self.font.render('Coming soon!', True, 'BLACK')
+            coming_soon_text_img = self.font.render('TULOSSA PIAN!', True, 'BLACK')
             self.screen.blit(coming_soon_text_img, (self.screen_width / 2 - coming_soon_text_img.get_width() / 2, self.screen_height / 2 - coming_soon_text_img.get_height() / 2))
 
             close_text_img = self.font.render('<<', True, 'BLACK')
