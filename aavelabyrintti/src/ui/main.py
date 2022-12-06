@@ -9,10 +9,10 @@ class Game():
 
     def __init__(self) -> None:
         pygame.init()
-        self.map = map1
+        self.map = MAP1
         self.images = Images()
-        self.player = Player(map1)
-        self.ghost = Ghost(map1)
+        self.player = Player(MAP1)
+        self.ghost = Ghost(MAP1)
         self.pics = self.images.download_images()
         self.scale = self.pics[0].get_width()
         self.screen_height = self.scale * len(self.map)

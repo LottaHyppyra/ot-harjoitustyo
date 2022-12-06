@@ -2,16 +2,16 @@ import random
 import math
 from entities.constants import GHOST, FLOOR, WALL, FINISH, SMUDGE_STICK
 
-cant_move_here = [WALL, FINISH, SMUDGE_STICK]
+CANT_MOVE_HERE = [WALL, FINISH, SMUDGE_STICK]
 
 class Ghost():
-    def __init__(self, map):
-        self.map = map
+    def __init__(self, labyrint):
+        self.labyrint = labyrint
 
     def get_coords(self):
-        for y_coord in range(len(self.map)):
-            for x_coord in range(len(self.map[y_coord])):
-                if self.map[y_coord][x_coord] == GHOST:
+        for y_coord in range(len(self.labyrint)):
+            for x_coord in range(len(self.labyrint[y_coord])):
+                if self.labyrint[y_coord][x_coord] == GHOST:
                     return (x_coord, y_coord)
         return None
 
@@ -26,7 +26,7 @@ class Ghost():
             new_coords = None
             for y_coord in range(-1, 2):
                 for x_coord in range(-1, 2):
-                    if self.map[pos_now[1] + y_coord][pos_now[0] + x_coord] != 1:
+                    if self.labyrint[pos_now[1] + y_coord][pos_now[0] + x_coord] != 1:
                         distance = self.distance(
                             pos_now[0] + x_coord,
                             pos_now[1] + y_coord,
@@ -36,15 +36,15 @@ class Ghost():
                             new_coords = (pos_now[0] + x_coord, pos_now[1] + y_coord)
                             min_distance = distance
 
-            if self.map[new_coords[1]][new_coords[0]] not in cant_move_here:
-                self.map[pos_now[1]][pos_now[0]] = FLOOR
-                self.map[new_coords[1]][new_coords[0]] = GHOST
+            if self.labyrint[new_coords[1]][new_coords[0]] not in CANT_MOVE_HERE:
+                self.labyrint[pos_now[1]][pos_now[0]] = FLOOR
+                self.labyrint[new_coords[1]][new_coords[0]] = GHOST
                 not_moved = False
 
         while not_moved:
             x_diff = random.randrange(-1, 2)
             y_diff = random.randrange(-1, 2)
-            if self.map[pos_now[1] + y_diff][pos_now[0] + x_diff] not in cant_move_here:
-                self.map[pos_now[1]][pos_now[0]] = FLOOR
-                self.map[pos_now[1] + y_diff][pos_now[0] + x_diff] = GHOST
+            if self.labyrint[pos_now[1] + y_diff][pos_now[0] + x_diff] not in CANT_MOVE_HERE:
+                self.labyrint[pos_now[1]][pos_now[0]] = FLOOR
+                self.labyrint[pos_now[1] + y_diff][pos_now[0] + x_diff] = GHOST
                 not_moved = False
