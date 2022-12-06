@@ -1,6 +1,8 @@
 import random
 import math
-from entities.constants import GHOST, FLOOR, WALL
+from entities.constants import GHOST, FLOOR, WALL, FINISH, SMUDGE_STICK
+
+cant_move_here = [WALL, FINISH, SMUDGE_STICK]
 
 class Ghost():
     def __init__(self, map):
@@ -11,6 +13,7 @@ class Ghost():
             for x_coord in range(len(self.map[y_coord])):
                 if self.map[y_coord][x_coord] == GHOST:
                     return (x_coord, y_coord)
+        return None
 
     def distance(self, ghost_x, ghost_y, player_x, player_y):
         return math.sqrt(math.pow(ghost_x-player_x, 2) + math.pow(ghost_y-player_y, 2))
@@ -33,14 +36,15 @@ class Ghost():
                             new_coords = (pos_now[0] + x_coord, pos_now[1] + y_coord)
                             min_distance = distance
 
-            self.map[pos_now[1]][pos_now[0]] = FLOOR
-            self.map[new_coords[1]][new_coords[0]] = GHOST
-            not_moved = False
+            if self.map[new_coords[1]][new_coords[0]] not in cant_move_here:
+                self.map[pos_now[1]][pos_now[0]] = FLOOR
+                self.map[new_coords[1]][new_coords[0]] = GHOST
+                not_moved = False
 
         while not_moved:
             x_diff = random.randrange(-1, 2)
             y_diff = random.randrange(-1, 2)
-            if self.map[pos_now[1] + y_diff][pos_now[0] + x_diff] != WALL:
+            if self.map[pos_now[1] + y_diff][pos_now[0] + x_diff] not in cant_move_here:
                 self.map[pos_now[1]][pos_now[0]] = FLOOR
                 self.map[pos_now[1] + y_diff][pos_now[0] + x_diff] = GHOST
                 not_moved = False
