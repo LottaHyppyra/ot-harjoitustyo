@@ -1,4 +1,5 @@
 import pygame
+import random
 from entities.map_list import *
 from images.images import Images
 from player import Player
@@ -20,27 +21,38 @@ class Game():
         pygame.display.set_caption("Aavelabyrintti")
         self.black_screen = pygame.Surface((self.screen_width, self.screen_height))
         self.black_screen.set_colorkey('RED')
-        self.font = pygame.font.SysFont(None, 50)
-        
+        self.font = pygame.font.SysFont('arialblack', 30)
+        self.counter = 0
+
     def main_menu(self):
         click = False
         while True:
-            self.screen.fill((255, 255, 255))
+            self.screen.fill((227, 227, 227))
+
+            play_button_background = pygame.Rect(self.screen_width / 2 - 152, self.screen_height / 3 - 52, 304, 104)
+            pygame.draw.rect(self.screen, ('BLACK'), play_button_background)
 
             play_button = pygame.Rect(self.screen_width / 2 - 150, self.screen_height / 3 - 50, 300, 100)
-            pygame.draw.rect(self.screen, (0, 0, 0), play_button)
-            play_text_img = self.font.render('PELAA', True, 'GREEN')
-            self.screen.blit(play_text_img, (self.screen_width / 2 - play_text_img.get_width() / 2, self.screen_height / 3 - 15))
+            pygame.draw.rect(self.screen, (130, 130, 130), play_button)
+            play_text_img = self.font.render('PELAA', True, 'BLACK')
+            self.screen.blit(play_text_img, (self.screen_width / 2 - play_text_img.get_width() / 2, self.screen_height / 3 - play_text_img.get_height() / 2))
+
+            rules_button_background = pygame.Rect(self.screen_width / 2 - 152, self.screen_height / 2 - 52, 304, 104)
+            pygame.draw.rect(self.screen, ('BLACK'), rules_button_background)
 
             rules_button = pygame.Rect(self.screen_width / 2 - 150, self.screen_height / 2 - 50, 300, 100)
-            pygame.draw.rect(self.screen, (0, 0, 0), rules_button)
-            rules_text_img = self.font.render('SÄÄNNÖT', True, 'GREEN')
-            self.screen.blit(rules_text_img, (self.screen_width / 2 - rules_text_img.get_width() / 2, self.screen_height / 2 - 15))
+            pygame.draw.rect(self.screen, (130, 130, 130), rules_button)
+            rules_text_img = self.font.render('SÄÄNNÖT', True, 'BLACK')
+            self.screen.blit(rules_text_img, (self.screen_width / 2 - rules_text_img.get_width() / 2, self.screen_height / 2 - rules_text_img.get_height() / 2))
+
+            leaderboard_button_background = pygame.Rect(self.screen_width / 2 - 152, self.screen_height / 3 * 2- 52, 304, 104)
+            pygame.draw.rect(self.screen, ('BLACK'), leaderboard_button_background)
+
 
             leaderboard_button = pygame.Rect(self.screen_width / 2 - 150, self.screen_height / 3 * 2 - 50, 300, 100)
-            pygame.draw.rect(self.screen, (0, 0, 0), leaderboard_button)
-            leaderboard_text_img = self.font.render('TULOSTAULU', True, 'GREEN')
-            self.screen.blit(leaderboard_text_img, (self.screen_width / 2 - leaderboard_text_img.get_width() / 2, self.screen_height / 3 * 2 - 15))
+            pygame.draw.rect(self.screen, (130, 130, 130), leaderboard_button)
+            leaderboard_text_img = self.font.render('TULOSTAULU', True, 'BLACK')
+            self.screen.blit(leaderboard_text_img, (self.screen_width / 2 - leaderboard_text_img.get_width() / 2, self.screen_height / 3 * 2 - leaderboard_text_img.get_height() / 2))
 
             if play_button.collidepoint(pygame.mouse.get_pos()):
                 if click:
@@ -62,6 +74,16 @@ class Game():
         not_smudged = True
         counter = 0
         is_won = False
+
+        floors = []
+        for y_coord in range(len(self.map)):
+            for x_coord in range(len(self.map[y_coord])):
+                if self.map[y_coord][x_coord] == 0:
+                    floors.append((x_coord, y_coord))
+
+        square = floors[random.randrange(0, len(floors))]
+        self.map[square[1]][square[0]] = 3
+
         while True:
 
             for event in pygame.event.get():
@@ -82,6 +104,9 @@ class Game():
                         else:
                             moved = False
 
+                        if moved:
+                            self.counter += 1
+
                         if not_smudged and moved and self.player.get_coords() is not None:
                             self.ghost.move(self.player.get_coords())
 
@@ -98,8 +123,8 @@ class Game():
             self.screen.fill((0, 0, 0))
             for y in range(len(self.map)):
                 for x in range(len(self.map[0])):
-                    box = self.map[y][x]
-                    self.screen.blit(self.pics[box], (x * self.scale, y * self.scale))
+                    object = self.map[y][x]
+                    self.screen.blit(self.pics[object], (x * self.scale, y * self.scale))
 
             if self.player.get_coords() is not None:
                 pygame.Surface.fill(self.black_screen, (0, 0, 0))
@@ -120,17 +145,22 @@ class Game():
 
             self.screen.blit(self.black_screen, (0, 0))
             self.player_inventory()
+            self.moves()
             pygame.display.flip()
 
     def player_inventory(self):
         smudges = self.player.count_smudges()
-        smudges_text_img = self.font.render('Suitsukkeita: ' + str(smudges), True, 'GREEN')
-        self.screen.blit(smudges_text_img, (60, self.screen_height - 50))
+        smudges_text_img = self.font.render('Suitsukkeita: ' + str(smudges), True, 'WHITE')
+        self.screen.blit(smudges_text_img, (60, 10))
+
+    def moves(self):
+        moves_text_img = self.font.render('Siirtoja: ' + str(self.counter), True, 'WHITE')
+        self.screen.blit(moves_text_img, (self.screen_width - 60 - moves_text_img.get_width(), 10)) 
 
     def won(self):
-            won_text_img = self.font.render('Voitit pelin', True, 'GREEN')
+            won_text_img = self.font.render('Voitit pelin', True, 'WHITE')
             self.screen.blit(won_text_img, (self.screen_width - 60 - won_text_img.get_width(), self.screen_height - 50))
 
     def lost(self):
-            lost_text_img = self.font.render('Hävisit pelin', True, 'GREEN')
+            lost_text_img = self.font.render('Hävisit pelin', True, 'WHITE')
             self.screen.blit(lost_text_img, (self.screen_width - 60 - lost_text_img.get_width(), self.screen_height - 50))
