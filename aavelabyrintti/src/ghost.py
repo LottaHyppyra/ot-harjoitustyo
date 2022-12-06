@@ -1,6 +1,6 @@
 import random
 import math
-from entities.constants import *
+from entities.constants import GHOST, FLOOR, WALL
 
 class Ghost():
     def __init__(self, map):

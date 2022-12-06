@@ -1,4 +1,4 @@
-from entities.constants import *
+from entities.constants import FLOOR, PLAYER, FINISH, SMUDGE_STICK
 
 class Player():
     def __init__(self, map, inventory = 1):
