@@ -40,10 +40,10 @@ class Game():
             rules_button_background = pygame.Rect(self.screen_width / 2 - 152, self.screen_height / 2 - 52, 304, 104)
             pygame.draw.rect(self.screen, ('BLACK'), rules_button_background)
 
-            rules_button = pygame.Rect(self.screen_width / 2 - 150, self.screen_height / 2 - 50, 300, 100)
-            pygame.draw.rect(self.screen, (130, 130, 130), rules_button)
-            rules_text_img = self.font.render('SÄÄNNÖT', True, 'BLACK')
-            self.screen.blit(rules_text_img, (self.screen_width / 2 - rules_text_img.get_width() / 2, self.screen_height / 2 - rules_text_img.get_height() / 2))
+            help_button = pygame.Rect(self.screen_width / 2 - 150, self.screen_height / 2 - 50, 300, 100)
+            pygame.draw.rect(self.screen, (130, 130, 130), help_button)
+            help_text_img = self.font.render('SÄÄNNÖT', True, 'BLACK')
+            self.screen.blit(help_text_img, (self.screen_width / 2 - help_text_img.get_width() / 2, self.screen_height / 2 - help_text_img.get_height() / 2))
 
             leaderboard_button_background = pygame.Rect(self.screen_width / 2 - 152, self.screen_height / 3 * 2- 52, 304, 104)
             pygame.draw.rect(self.screen, ('BLACK'), leaderboard_button_background)
@@ -58,9 +58,77 @@ class Game():
                 if click:
                     self.play()
 
+            if help_button.collidepoint(pygame.mouse.get_pos()):
+                if click:
+                    self.help()
+
+            if leaderboard_button.collidepoint(pygame.mouse.get_pos()):
+                if click:
+                    self.leader_board()
+
             click = False
 
             for event in pygame.event.get():
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if event.button == 1:
+                        click = True
+
+                if event.type == pygame.QUIT:
+                    exit()
+
+            pygame.display.flip()
+
+    def help(self):
+        click = False
+        while True:
+            self.screen.fill((227, 227, 227))
+            help_image = self.pics[6]
+            self.screen.blit(help_image, ((self.screen_width - help_image.get_width()) / 2, (self.screen_height - help_image.get_height()) / 2) )
+
+            close_text_img = self.font.render('<<', True, 'BLACK')
+            close_button = pygame.Rect(self.screen_width / 2 - close_text_img.get_width() / 2, 680, close_text_img.get_width(), close_text_img.get_height())
+            pygame.draw.rect(self.screen, (227, 227, 227), close_button)
+            self.screen.blit(close_text_img, (self.screen_width / 2 - close_text_img.get_width() / 2, 680))
+
+
+            for event in pygame.event.get():
+
+                if close_button.collidepoint(pygame.mouse.get_pos()):
+                    if click:
+                        self.main_menu()
+
+                click = False
+
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if event.button == 1:
+                        click = True
+
+                if event.type == pygame.QUIT:
+                    exit()
+
+            pygame.display.flip()
+
+    def leader_board(self):
+        click = False
+        while True:
+            self.screen.fill((227, 227, 227))
+
+            coming_soon_text_img = self.font.render('Coming soon!', True, 'BLACK')
+            self.screen.blit(coming_soon_text_img, (self.screen_width / 2 - coming_soon_text_img.get_width() / 2, self.screen_height / 2 - coming_soon_text_img.get_height() / 2))
+
+            close_text_img = self.font.render('<<', True, 'BLACK')
+            close_button = pygame.Rect(self.screen_width / 2 - close_text_img.get_width() / 2, 680, close_text_img.get_width(), close_text_img.get_height())
+            pygame.draw.rect(self.screen, (227, 227, 227), close_button)
+            self.screen.blit(close_text_img, (self.screen_width / 2 - close_text_img.get_width() / 2, 680))
+
+            for event in pygame.event.get():
+
+                if close_button.collidepoint(pygame.mouse.get_pos()):
+                    if click:
+                        self.main_menu()
+
+                click = False
+
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if event.button == 1:
                         click = True
@@ -158,9 +226,9 @@ class Game():
         self.screen.blit(moves_text_img, (self.screen_width - 60 - moves_text_img.get_width(), 10)) 
 
     def won(self):
-            won_text_img = self.font.render('Voitit pelin', True, 'WHITE')
+            won_text_img = self.font.render('Voitit pelin ' + str(self.counter) + ' siirrolla!', True, 'WHITE')
             self.screen.blit(won_text_img, (self.screen_width - 60 - won_text_img.get_width(), self.screen_height - 50))
 
     def lost(self):
-            lost_text_img = self.font.render('Hävisit pelin', True, 'WHITE')
+            lost_text_img = self.font.render('Hävisit pelin!', True, 'WHITE')
             self.screen.blit(lost_text_img, (self.screen_width - 60 - lost_text_img.get_width(), self.screen_height - 50))
