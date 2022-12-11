@@ -20,3 +20,9 @@
 - Suitsukkeen käyttäminen pysäyttää aaven hetkellisesti.
 - Pelaajan siirrot lasketaan. 
 - Aave lähtee liikkeelle satunnaisesti ruudusta eikä aina samasta kohdasta.
+
+## Viikko 6
+
+- Pelaajan nimeä kysytään pelin alussa.
+- Pelaajan nimi ja siirtojen määrä tallentuu tietokantaan.
+- Tulostauluun tallentuu TOP3 tulokset.

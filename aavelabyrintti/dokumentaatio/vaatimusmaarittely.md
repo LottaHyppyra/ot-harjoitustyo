@@ -6,9 +6,9 @@ Aavelabyrintti -pelin ideana on löytää ulos labyrintistä jäämättä kiinni
 
 ## Pelin perusversion tarjoama toiminallisuus
 
-- Pelin alussa kysytään pelaajan nimeä.
+- Pelin alussa kysytään pelaajan nimeä. TEHTY
 - Pelin aikana pidetään kirjaa pelaajan siirtymien määrästä tulostaulua varten. TEHTY
-- Tulostaululla näkyy pienimmällä määrällä siirtymiä labyrintista ulos löytäneet pelaajat. 
+- Tulostaululla näkyy pienimmällä määrällä siirtymiä labyrintista ulos löytäneet pelaajat. TEHTY
 - Pelaaja näkee vain pienen alueen ympärillään. TEHTY.
 - Pelaaja voi liikkua eteen, taakse, oikealla ja vasemmalle vapaisiin ruutuihin, mutta ei ristiin. TEHTY.
 - Pelaajalla on alussa mukanaan suitsuke, jolla voi karkottaa aaveen hetkellisesti. TEHTY

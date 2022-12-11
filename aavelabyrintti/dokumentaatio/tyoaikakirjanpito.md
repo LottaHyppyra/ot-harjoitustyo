@@ -13,4 +13,6 @@
 |  3.12. | 2    | refaktorointia, main menu, play button |
 |  5.12. | 2    | lisätty suitsukkeet |
 |  6.12. | 5    | UI:n parantelua, ohjeet sivu, lisää testejä |
+| 10.12. | 4    | toimiva tietokantayhteys, tulosten lisääminen tietokantaan |
+| 11.12. | 4    | nimen syöttö, nimen ja siirtojen tallennus tietokantaan, tulostaulu |
 | yht.   | 26   | |
