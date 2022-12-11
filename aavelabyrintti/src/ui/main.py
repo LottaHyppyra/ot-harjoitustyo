@@ -1,5 +1,8 @@
 import pygame
+import pygame_textinput
 import random
+from db import connection
+from init_db import initialize_database
 from entities.map_list import *
 from images.images import Images
 from player import Player
@@ -23,6 +26,7 @@ class Game():
         self.black_screen.set_colorkey('RED')
         self.font = pygame.font.SysFont('arialblack', 30)
         self.counter = 0
+        self.name = ""
 
     def main_menu(self):
         click = False
@@ -56,7 +60,7 @@ class Game():
 
             if play_button.collidepoint(pygame.mouse.get_pos()):
                 if click:
-                    self.play()
+                    self.ask_name()
 
             if help_button.collidepoint(pygame.mouse.get_pos()):
                 if click:
@@ -110,11 +114,31 @@ class Game():
 
     def leader_board(self):
         click = False
+        cursor = connection.cursor()
+        results = cursor.execute("SELECT name, result FROM results").fetchall()
+        results.sort(key=lambda result:result[1])
+
         while True:
             self.screen.fill((227, 227, 227))
 
-            coming_soon_text_img = self.font.render('TULOSSA PIAN!', True, 'BLACK')
-            self.screen.blit(coming_soon_text_img, (self.screen_width / 2 - coming_soon_text_img.get_width() / 2, self.screen_height / 2 - coming_soon_text_img.get_height() / 2))
+            leaders_text_img = self.font.render('- TOP 3 -', True, 'BLACK')
+            self.screen.blit(leaders_text_img, (self.screen_width / 2 - leaders_text_img.get_width() / 2, 200))
+
+            if len(results) >= 1:
+                text = f"1. {results[0][0]} - {results[0][1]} siirtoa"
+                result_text_img = self.font.render(text, True, 'BLACK')
+                self.screen.blit(result_text_img, (self.screen_width / 2 - result_text_img.get_width() / 2, 275))
+
+            if len(results) >= 2:
+                text = f"2. {results[1][0]} - {results[1][1]} siirtoa"
+                result_text_img = self.font.render(text, True, 'BLACK')
+                self.screen.blit(result_text_img, (self.screen_width / 2 - result_text_img.get_width() / 2, 350))
+
+            if len(results) >= 3:
+                text = f"3. {results[2][0]} - {results[2][1]} siirtoa"
+                result_text_img = self.font.render(text, True, 'BLACK')
+                self.screen.blit(result_text_img, (self.screen_width / 2 - result_text_img.get_width() / 2, 425))
+
 
             close_text_img = self.font.render('<<', True, 'BLACK')
             close_button = pygame.Rect(self.screen_width / 2 - close_text_img.get_width() / 2, 680, close_text_img.get_width(), close_text_img.get_height())
@@ -208,6 +232,10 @@ class Game():
                 pygame.Surface.fill(self.black_screen, ('RED'))
                 if is_won:
                     self.won()
+                    if self.name != "":
+                        self.add_leaderboard()
+                        self.name = ""
+
                 else:
                     self.lost()
 
@@ -232,3 +260,41 @@ class Game():
     def lost(self):
             lost_text_img = self.font.render('Hävisit pelin!', True, 'WHITE')
             self.screen.blit(lost_text_img, (self.screen_width - 60 - lost_text_img.get_width(), self.screen_height - 50))
+
+    def add_leaderboard(self):
+        initialize_database()
+        cursor = connection.cursor()
+        cursor.execute("INSERT INTO results VALUES (?, ?)", (self.name, self.counter))
+        connection.commit()
+
+    def ask_name(self):
+        manager = pygame_textinput.TextInputManager(validator = lambda input: len(input) <= 10)
+        textinput = pygame_textinput.TextInputVisualizer(manager=manager, font_object = self.font)
+
+        clock = pygame.time.Clock()
+
+        while True:
+            self.screen.fill((227, 227, 227))
+            events = pygame.event.get()
+
+            ask_name_text_img = self.font.render('Pelaajan nimi:', True, 'BLACK')
+            self.screen.blit(ask_name_text_img, (self.screen_width / 2 - 150, self.screen_height / 2 - 100))
+
+            name_field_background = pygame.Rect(self.screen_width / 2 - 152, self.screen_height / 2 - 52, 304, 104)
+            pygame.draw.rect(self.screen, ('BLACK'), name_field_background)
+
+            name_field = pygame.Rect(self.screen_width / 2 - 150, self.screen_height / 2 - 50, 300, 100)
+            pygame.draw.rect(self.screen, (130, 130, 130), name_field)
+
+            textinput.update(events)
+            self.screen.blit(textinput.surface, (self.screen_width / 2 - 150 + 25, self.screen_height / 2 - 50 + 25))
+            for event in events:
+                if event.type == pygame.QUIT:
+                    exit()
+
+                if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
+                    self.name = str(textinput.value)
+                    self.play()
+
+            pygame.display.update()
+            clock.tick(30)
