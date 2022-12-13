@@ -187,18 +187,12 @@ class Game():
                     object = self.map[y][x]
                     self.screen.blit(self.pics[object], (x * self.scale, y * self.scale))
 
-            if self.player.get_coords() is not None:
-                pygame.Surface.fill(self.black_screen, (0, 0, 0))
-                pygame.draw.circle(
-                    self.black_screen,
-                    ('RED'),
-                    ((self.player.get_coords()[0] * self.pics[2].get_width() + self.pics[2].get_width() / 2),
-                    (self.player.get_coords()[1] * self.pics[2].get_height() + self.pics[2].get_height() / 2)),
-                    self.pics[0].get_width() * 2.5
-                    )
+            if self.player_is_alive():
+                self.limit_player_vision()
 
             else:
                 pygame.Surface.fill(self.black_screen, ('RED'))
+
                 if is_won:
                     self.print_won()
                     if self.name != "":
@@ -212,6 +206,16 @@ class Game():
             self.print_player_inventory()
             self.print_moves()
             pygame.display.flip()
+
+    def limit_player_vision(self):
+        pygame.Surface.fill(self.black_screen, (0, 0, 0))
+        pygame.draw.circle(
+            self.black_screen,
+            ('RED'),
+            ((self.player.get_coords()[0] * self.pics[2].get_width() + self.pics[2].get_width() / 2),
+            (self.player.get_coords()[1] * self.pics[2].get_height() + self.pics[2].get_height() / 2)),
+            self.pics[0].get_width() * 2.5
+            )
 
     def ask_name(self):
         manager = pygame_textinput.TextInputManager(validator = lambda input: len(input) <= 10)
@@ -280,3 +284,6 @@ class Game():
     def print_lost(self):
             lost_text_img = self.font.render('Hävisit pelin!', True, 'WHITE')
             self.screen.blit(lost_text_img, (self.screen_width - 60 - lost_text_img.get_width(), self.screen_height - 50))
+
+    def player_is_alive(self):
+        return self.player.get_coords() is not None
