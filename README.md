@@ -6,6 +6,8 @@ Aavelabyrintissa pelaajan tulee löytää ulos labyrintista jäämättä kiinni 
 
 - [Release 1](https://github.com/LottaHyppyra/ot-harjoitustyo/releases/tag/viikko5)
 
+- [Release 2](https://github.com/LottaHyppyra/ot-harjoitustyo/releases/tag/viikko6)
+
 - [Työaikakirjanpito](https://github.com/LottaHyppyra/ot-harjoitustyo/blob/master/aavelabyrintti/dokumentaatio/tyoaikakirjanpito.md)
 
 - [Vaatimusmäärittely](https://github.com/LottaHyppyra/ot-harjoitustyo/blob/master/aavelabyrintti/dokumentaatio/vaatimusmaarittely.md)
