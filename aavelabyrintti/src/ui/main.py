@@ -1,8 +1,7 @@
 import pygame
 import pygame_textinput
 import random
-from db import connection
-from init_db import initialize_database
+from repositories.results_repository import get_sorted_results, add_result_to_database
 from entities.map_list import *
 from images.images import Images
 from player import Player
@@ -30,33 +29,13 @@ class Game():
 
     def main_menu(self):
         click = False
+
         while True:
             self.screen.fill((227, 227, 227))
 
-            play_button_background = pygame.Rect(self.screen_width / 2 - 152, self.screen_height / 3 - 52, 304, 104)
-            pygame.draw.rect(self.screen, ('BLACK'), play_button_background)
-
-            play_button = pygame.Rect(self.screen_width / 2 - 150, self.screen_height / 3 - 50, 300, 100)
-            pygame.draw.rect(self.screen, (130, 130, 130), play_button)
-            play_text_img = self.font.render('PELAA', True, 'BLACK')
-            self.screen.blit(play_text_img, (self.screen_width / 2 - play_text_img.get_width() / 2, self.screen_height / 3 - play_text_img.get_height() / 2))
-
-            rules_button_background = pygame.Rect(self.screen_width / 2 - 152, self.screen_height / 2 - 52, 304, 104)
-            pygame.draw.rect(self.screen, ('BLACK'), rules_button_background)
-
-            help_button = pygame.Rect(self.screen_width / 2 - 150, self.screen_height / 2 - 50, 300, 100)
-            pygame.draw.rect(self.screen, (130, 130, 130), help_button)
-            help_text_img = self.font.render('SÄÄNNÖT', True, 'BLACK')
-            self.screen.blit(help_text_img, (self.screen_width / 2 - help_text_img.get_width() / 2, self.screen_height / 2 - help_text_img.get_height() / 2))
-
-            leaderboard_button_background = pygame.Rect(self.screen_width / 2 - 152, self.screen_height / 3 * 2- 52, 304, 104)
-            pygame.draw.rect(self.screen, ('BLACK'), leaderboard_button_background)
-
-
-            leaderboard_button = pygame.Rect(self.screen_width / 2 - 150, self.screen_height / 3 * 2 - 50, 300, 100)
-            pygame.draw.rect(self.screen, (130, 130, 130), leaderboard_button)
-            leaderboard_text_img = self.font.render('TULOSTAULU', True, 'BLACK')
-            self.screen.blit(leaderboard_text_img, (self.screen_width / 2 - leaderboard_text_img.get_width() / 2, self.screen_height / 3 * 2 - leaderboard_text_img.get_height() / 2))
+            play_button = self.draw_menu_button('PELAA', 3)
+            help_button = self.draw_menu_button('OHJEET', 2)
+            leaderboard_button = self.draw_menu_button('TULOSTAULU', 3/2)
 
             if play_button.collidepoint(pygame.mouse.get_pos()):
                 if click:
@@ -89,11 +68,7 @@ class Game():
             help_image = self.pics[6]
             self.screen.blit(help_image, ((self.screen_width - help_image.get_width()) / 2, (self.screen_height - help_image.get_height()) / 2) )
 
-            close_text_img = self.font.render('<<', True, 'BLACK')
-            close_button = pygame.Rect(self.screen_width / 2 - close_text_img.get_width() / 2, 680, close_text_img.get_width(), close_text_img.get_height())
-            pygame.draw.rect(self.screen, (227, 227, 227), close_button)
-            self.screen.blit(close_text_img, (self.screen_width / 2 - close_text_img.get_width() / 2, 680))
-
+            close_button = self.draw_close_button()
 
             for event in pygame.event.get():
 
@@ -114,9 +89,7 @@ class Game():
 
     def leader_board(self):
         click = False
-        cursor = connection.cursor()
-        results = cursor.execute("SELECT name, result FROM results").fetchall()
-        results.sort(key=lambda result:result[1])
+        results = get_sorted_results()
 
         while True:
             self.screen.fill((227, 227, 227))
@@ -139,11 +112,7 @@ class Game():
                 result_text_img = self.font.render(text, True, 'BLACK')
                 self.screen.blit(result_text_img, (self.screen_width / 2 - result_text_img.get_width() / 2, 425))
 
-
-            close_text_img = self.font.render('<<', True, 'BLACK')
-            close_button = pygame.Rect(self.screen_width / 2 - close_text_img.get_width() / 2, 680, close_text_img.get_width(), close_text_img.get_height())
-            pygame.draw.rect(self.screen, (227, 227, 227), close_button)
-            self.screen.blit(close_text_img, (self.screen_width / 2 - close_text_img.get_width() / 2, 680))
+            close_button = self.draw_close_button()
 
             for event in pygame.event.get():
 
@@ -231,41 +200,18 @@ class Game():
             else:
                 pygame.Surface.fill(self.black_screen, ('RED'))
                 if is_won:
-                    self.won()
+                    self.print_won()
                     if self.name != "":
-                        self.add_leaderboard()
+                        add_result_to_database(self.name, self.counter)
                         self.name = ""
 
                 else:
-                    self.lost()
+                    self.print_lost()
 
             self.screen.blit(self.black_screen, (0, 0))
-            self.player_inventory()
-            self.moves()
+            self.print_player_inventory()
+            self.print_moves()
             pygame.display.flip()
-
-    def player_inventory(self):
-        smudges = self.player.count_smudges()
-        smudges_text_img = self.font.render('Suitsukkeita: ' + str(smudges), True, 'WHITE')
-        self.screen.blit(smudges_text_img, (60, 10))
-
-    def moves(self):
-        moves_text_img = self.font.render('Siirtoja: ' + str(self.counter), True, 'WHITE')
-        self.screen.blit(moves_text_img, (self.screen_width - 60 - moves_text_img.get_width(), 10)) 
-
-    def won(self):
-            won_text_img = self.font.render('Voitit pelin ' + str(self.counter) + ' siirrolla!', True, 'WHITE')
-            self.screen.blit(won_text_img, (self.screen_width - 60 - won_text_img.get_width(), self.screen_height - 50))
-
-    def lost(self):
-            lost_text_img = self.font.render('Hävisit pelin!', True, 'WHITE')
-            self.screen.blit(lost_text_img, (self.screen_width - 60 - lost_text_img.get_width(), self.screen_height - 50))
-
-    def add_leaderboard(self):
-        initialize_database()
-        cursor = connection.cursor()
-        cursor.execute("INSERT INTO results VALUES (?, ?)", (self.name, self.counter))
-        connection.commit()
 
     def ask_name(self):
         manager = pygame_textinput.TextInputManager(validator = lambda input: len(input) <= 10)
@@ -298,3 +244,39 @@ class Game():
 
             pygame.display.update()
             clock.tick(30)
+
+    def draw_menu_button(self, text, pos):
+        menu_button_background = pygame.Rect(self.screen_width / 2 - 152, self.screen_height / pos - 52, 304, 104)
+        pygame.draw.rect(self.screen, ('BLACK'), menu_button_background)
+
+        menu_button = pygame.Rect(self.screen_width / 2 - 150, self.screen_height / pos - 50, 300, 100)
+        pygame.draw.rect(self.screen, (130, 130, 130), menu_button)
+        text_img = self.font.render(text, True, 'BLACK')
+        self.screen.blit(text_img, (self.screen_width / 2 - text_img.get_width() / 2, self.screen_height / pos - text_img.get_height() / 2))
+
+        return menu_button
+
+    def draw_close_button(self):
+            close_text_img = self.font.render('<<', True, 'BLACK')
+            close_button = pygame.Rect(self.screen_width / 2 - close_text_img.get_width() / 2, 680, close_text_img.get_width(), close_text_img.get_height())
+            pygame.draw.rect(self.screen, (227, 227, 227), close_button)
+            self.screen.blit(close_text_img, (self.screen_width / 2 - close_text_img.get_width() / 2, 680))
+
+            return close_button
+
+    def print_player_inventory(self):
+        smudges = self.player.count_smudges()
+        smudges_text_img = self.font.render('Suitsukkeita: ' + str(smudges), True, 'WHITE')
+        self.screen.blit(smudges_text_img, (60, 10))
+
+    def print_moves(self):
+        moves_text_img = self.font.render('Siirtoja: ' + str(self.counter), True, 'WHITE')
+        self.screen.blit(moves_text_img, (self.screen_width - 60 - moves_text_img.get_width(), 10)) 
+
+    def print_won(self):
+            won_text_img = self.font.render('Voitit pelin ' + str(self.counter) + ' siirrolla!', True, 'WHITE')
+            self.screen.blit(won_text_img, (self.screen_width - 60 - won_text_img.get_width(), self.screen_height - 50))
+
+    def print_lost(self):
+            lost_text_img = self.font.render('Hävisit pelin!', True, 'WHITE')
+            self.screen.blit(lost_text_img, (self.screen_width - 60 - lost_text_img.get_width(), self.screen_height - 50))
