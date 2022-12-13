@@ -1,3 +1,15 @@
+## Käyttöliittymä
+
+Käyttöliittymässä on useampi eri näkymä.
+
+- Aloitusvalikko
+- Ohjeet
+- Tulostaulu
+- Peli
+    - Ennen pelin alkua kysytään pelaajan nimeä omassa näkymässään. 
+
+Käyttöliittymän eri näkymät on toteutettu tiedostossa src/ui/main.py luokassa Game().
+
 ## Luokkakaavio
 
 ![luokkakaavio](https://github.com/LottaHyppyra/ot-harjoitustyo/blob/master/aavelabyrintti/dokumentaatio/kuvat/luokkakaavio.jpg)

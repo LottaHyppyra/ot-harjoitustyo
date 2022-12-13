@@ -15,4 +15,5 @@
 |  6.12. | 5    | UI:n parantelua, ohjeet sivu, lisää testejä |
 | 10.12. | 4    | toimiva tietokantayhteys, tulosten lisääminen tietokantaan |
 | 11.12. | 4    | nimen syöttö, nimen ja siirtojen tallennus tietokantaan, tulostaulu |
+| 13.13. | 3    | refaktorointia |
 | yht.   | 26   | |
