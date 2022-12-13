@@ -8,8 +8,15 @@ from player import Player
 from ghost import Ghost
 
 class Game():
+    """Luokka, joka huolehtii pelin käyttöliittymästä.
+    
+    """
 
-    def __init__(self) -> None:
+    def __init__(self):
+        """Luokan konstruktori, joka luo käyttöliittymän.
+        
+        """
+
         pygame.init()
         self.map = MAP1
         self.images = Images()
@@ -28,6 +35,13 @@ class Game():
         self.name = ""
 
     def main_menu(self):
+
+        """Piirtää pelin aloitusvalikon, jossa painikkeet "pelaa", "ohjeet" ja "tulostaulu".
+
+        Painikkeita klikkaamalla siirtyy pois aloitusvalikosta.
+        
+        """
+
         click = False
 
         while True:
@@ -62,6 +76,13 @@ class Game():
             pygame.display.flip()
 
     def help(self):
+
+        """Piirtää pelin ohjesivun.
+        
+        Sivulla on painike, jota klikkaamalla pääsee takaisin aloitusvalikkoon.
+
+        """
+
         click = False
         while True:
             self.screen.fill((227, 227, 227))
@@ -88,6 +109,14 @@ class Game():
             pygame.display.flip()
 
     def leader_board(self):
+
+        """Piirtää pelin tulostaulu -sivun.
+        
+        Tulostaa enintään TOP 3 tulosta. Sivulla on painike, jota klikkaamalla siirtyy takaisin aloitusvalikkoon.
+        
+        """
+
+
         click = False
         results = get_sorted_results()
 
@@ -132,6 +161,11 @@ class Game():
             pygame.display.flip()
 
     def play(self):
+
+        """Piirtää varsinaisen pelin ja huolehtii pelinaikaisten tietojen päivityksestä.
+        
+        """
+
         not_smudged = True
         counter = 0
         is_won = False
