@@ -35,7 +35,6 @@ class Game():
         self.name = ""
 
     def main_menu(self):
-
         """Piirtää pelin aloitusvalikon, jossa painikkeet "pelaa", "ohjeet" ja "tulostaulu".
 
         Painikkeita klikkaamalla siirtyy pois aloitusvalikosta.
@@ -76,7 +75,6 @@ class Game():
             pygame.display.flip()
 
     def help(self):
-
         """Piirtää pelin ohjesivun.
         
         Sivulla on painike, jota klikkaamalla pääsee takaisin aloitusvalikkoon.
@@ -109,7 +107,6 @@ class Game():
             pygame.display.flip()
 
     def leader_board(self):
-
         """Piirtää pelin tulostaulu -sivun.
         
         Tulostaa enintään TOP 3 tulosta. Sivulla on painike, jota klikkaamalla siirtyy takaisin aloitusvalikkoon.
@@ -161,7 +158,6 @@ class Game():
             pygame.display.flip()
 
     def play(self):
-
         """Piirtää varsinaisen pelin ja huolehtii pelinaikaisten tietojen päivityksestä.
         
         """
@@ -241,17 +237,13 @@ class Game():
             self.print_moves()
             pygame.display.flip()
 
-    def limit_player_vision(self):
-        pygame.Surface.fill(self.black_screen, (0, 0, 0))
-        pygame.draw.circle(
-            self.black_screen,
-            ('RED'),
-            ((self.player.get_coords()[0] * self.pics[2].get_width() + self.pics[2].get_width() / 2),
-            (self.player.get_coords()[1] * self.pics[2].get_height() + self.pics[2].get_height() / 2)),
-            self.pics[0].get_width() * 2.5
-            )
-
     def ask_name(self):
+        """Piirtää näkymän, jossa kysytään pelaajan nimeä.
+        
+        Syötetty nimi otetaan talteen self.name muuttujaan.
+        
+        """
+
         manager = pygame_textinput.TextInputManager(validator = lambda input: len(input) <= 10)
         textinput = pygame_textinput.TextInputVisualizer(manager=manager, font_object = self.font)
 
@@ -283,41 +275,96 @@ class Game():
             pygame.display.update()
             clock.tick(30)
 
-    def draw_menu_button(self, text, pos):
-        menu_button_background = pygame.Rect(self.screen_width / 2 - 152, self.screen_height / pos - 52, 304, 104)
+    def limit_player_vision(self):
+        """Täyttää ruudun mustalla jättäen halkaisijalta kahden ruudun suuruisen aukon pelaajan päälle.
+        
+        """
+
+        pygame.Surface.fill(self.black_screen, (0, 0, 0))
+        pygame.draw.circle(
+            self.black_screen,
+            ('RED'),
+            ((self.player.get_coords()[0] * self.pics[2].get_width() + self.pics[2].get_width() / 2),
+            (self.player.get_coords()[1] * self.pics[2].get_height() + self.pics[2].get_height() / 2)),
+            self.pics[0].get_width() * 2.5
+            )
+
+    def draw_menu_button(self, text, part):
+        """ Piirtää aloitusvalikon painikkeet.
+        
+        Args: 
+            text: painikkeeseen tulostuva teksti.
+            place: millä näytön korkeus jaetaan, jossa painike piirtyy oikeaan kohtaan.
+
+        Returns:
+            Suorakulmion mutoinen painike.
+        
+        """
+
+        menu_button_background = pygame.Rect(self.screen_width / 2 - 152, self.screen_height / part - 52, 304, 104)
         pygame.draw.rect(self.screen, ('BLACK'), menu_button_background)
 
-        menu_button = pygame.Rect(self.screen_width / 2 - 150, self.screen_height / pos - 50, 300, 100)
+        menu_button = pygame.Rect(self.screen_width / 2 - 150, self.screen_height / part - 50, 300, 100)
         pygame.draw.rect(self.screen, (130, 130, 130), menu_button)
         text_img = self.font.render(text, True, 'BLACK')
-        self.screen.blit(text_img, (self.screen_width / 2 - text_img.get_width() / 2, self.screen_height / pos - text_img.get_height() / 2))
+        self.screen.blit(text_img, (self.screen_width / 2 - text_img.get_width() / 2, self.screen_height / part - text_img.get_height() / 2))
 
         return menu_button
 
     def draw_close_button(self):
-            close_text_img = self.font.render('<<', True, 'BLACK')
-            close_button = pygame.Rect(self.screen_width / 2 - close_text_img.get_width() / 2, 680, close_text_img.get_width(), close_text_img.get_height())
-            pygame.draw.rect(self.screen, (227, 227, 227), close_button)
-            self.screen.blit(close_text_img, (self.screen_width / 2 - close_text_img.get_width() / 2, 680))
+        """Piirtää painikkeen "<<" tulostuksella.
+        
+        Returns: 
+            Suorakulmion muotoinen painike.
 
-            return close_button
+        """
+
+        close_text_img = self.font.render('<<', True, 'BLACK')
+        close_button = pygame.Rect(self.screen_width / 2 - close_text_img.get_width() / 2, 680, close_text_img.get_width(), close_text_img.get_height())
+        pygame.draw.rect(self.screen, (227, 227, 227), close_button)
+        self.screen.blit(close_text_img, (self.screen_width / 2 - close_text_img.get_width() / 2, 680))
+
+        return close_button
 
     def print_player_inventory(self):
+        """Tulostaa näytölle pelaajan suitsukkeiden lukumäärän.
+        
+        """
+
         smudges = self.player.count_smudges()
         smudges_text_img = self.font.render('Suitsukkeita: ' + str(smudges), True, 'WHITE')
         self.screen.blit(smudges_text_img, (60, 10))
 
     def print_moves(self):
+        """Piirtää näytölle pelaajan siirtymien määrän.
+        
+        """
+
         moves_text_img = self.font.render('Siirtoja: ' + str(self.counter), True, 'WHITE')
         self.screen.blit(moves_text_img, (self.screen_width - 60 - moves_text_img.get_width(), 10)) 
 
     def print_won(self):
-            won_text_img = self.font.render('Voitit pelin ' + str(self.counter) + ' siirrolla!', True, 'WHITE')
-            self.screen.blit(won_text_img, (self.screen_width - 60 - won_text_img.get_width(), self.screen_height - 50))
+        """Tulostaa voittotekstin.
+        
+        """
+
+        won_text_img = self.font.render('Voitit pelin ' + str(self.counter) + ' siirrolla!', True, 'WHITE')
+        self.screen.blit(won_text_img, (self.screen_width - 60 - won_text_img.get_width(), self.screen_height - 50))
 
     def print_lost(self):
-            lost_text_img = self.font.render('Hävisit pelin!', True, 'WHITE')
-            self.screen.blit(lost_text_img, (self.screen_width - 60 - lost_text_img.get_width(), self.screen_height - 50))
+        """Tulostaa häviötekstin.
+        
+        """
+
+        lost_text_img = self.font.render('Hävisit pelin!', True, 'WHITE')
+        self.screen.blit(lost_text_img, (self.screen_width - 60 - lost_text_img.get_width(), self.screen_height - 50))
 
     def player_is_alive(self):
+        """Kertoo onko pelaaja vielä elossa.
+
+        Returns: 
+            True, jos pelaaja vielä löytyy labyrintilta, muussa tapauksessa False.
+        
+        """
+
         return self.player.get_coords() is not None
