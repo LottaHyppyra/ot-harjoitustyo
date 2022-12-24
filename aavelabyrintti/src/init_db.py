@@ -22,6 +22,7 @@ def create_tables():
     connection.commit()
 
 def initialize_database():
+    empty_db()
     create_tables()
 
 if __name__ == "__main__":

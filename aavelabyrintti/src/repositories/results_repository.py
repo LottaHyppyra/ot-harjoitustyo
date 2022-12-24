@@ -1,29 +1,32 @@
 from db import connection
-from init_db import initialize_database
 
-def add_result_to_database(name, moves):
-    """Lisää tuloksen tietokantaan.
-    
-    Args:
-        name: pelaajan nimi.
-        moves: siirtojen määrä.
+class Results_repository():
+    def __init__(self, connection):
+        self.cursor = connection.cursor()
+        self.connection = connection
 
-    """
+    def add_result_to_database(self, name, moves):
+        """Lisää tuloksen tietokantaan.
+        
+        Args:
+            name: pelaajan nimi.
+            moves: siirtojen määrä.
 
-    initialize_database()
-    cursor = connection.cursor()
-    cursor.execute("INSERT INTO results VALUES (?, ?)", (name, moves))
-    connection.commit()
+        """
 
-def get_sorted_results():
-    """Järjestää tulokset siirtojen perusteella pienimmästä suurimpaan.
+        self.cursor.execute("INSERT INTO results VALUES (?, ?)", (name, moves))
+        self.connection.commit()
 
-    Returns: Tulokset järjestyksessä.
+    def get_sorted_results(self):
+        """Järjestää tulokset siirtojen perusteella pienimmästä suurimpaan.
 
-    """
-    
-    cursor = connection.cursor()
-    results = cursor.execute("SELECT name, result FROM results").fetchall()
-    results.sort(key=lambda result:result[1])
+        Returns: Tulokset järjestyksessä.
 
-    return results
+        """
+
+        results = self.cursor.execute("SELECT name, result FROM results").fetchall()
+        results.sort(key=lambda result:result[1])
+
+        return results
+
+results_repository = Results_repository(connection)

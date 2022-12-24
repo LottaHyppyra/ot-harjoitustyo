@@ -1,7 +1,7 @@
 import pygame
 import pygame_textinput
 import random
-from repositories.results_repository import get_sorted_results, add_result_to_database
+from repositories.results_repository import results_repository
 from entities.map_list import *
 from images.images import Images
 from player import Player
@@ -115,7 +115,7 @@ class Game():
 
 
         click = False
-        results = get_sorted_results()
+        results = results_repository.get_sorted_results()
 
         while True:
             self.screen.fill((227, 227, 227))
@@ -226,7 +226,7 @@ class Game():
                 if is_won:
                     self.print_won()
                     if self.name != "":
-                        add_result_to_database(self.name, self.counter)
+                        results_repository.add_result_to_database(self.name, self.counter)
                         self.name = ""
 
                 else:
