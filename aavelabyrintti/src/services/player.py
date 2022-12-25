@@ -5,7 +5,7 @@ class Player():
 
     def __init__(self, labyrinth, inventory=1):
         """Luokan konstruktori.
-        
+
         Args:
             labyrinth: Labyrintti matriisi, jossa pelaaja liikkuu.
             inventory: Kokonaisluku arvo, joka kertoo montako suitsuketta pelaajalla on.
@@ -25,11 +25,11 @@ class Player():
 
     def move(self, x_diff, y_diff):
         """Liikuttaa pelaajaa labyrintissa.
-        
+
         Args:
             x_diff: Muutos vaakatasossa.
             y_diff: Muutos pystysuunnassa.
-            
+
         """
 
         pos_now = self.get_coords()
@@ -50,7 +50,11 @@ class Player():
         return False
 
     def use_smudge(self):
-        """Pienentää pelaajan varastoa ja palauttaa totuusarvon riippuen onnistuiko suitsukkeen käyttö."""
+        """Pienentää pelaajan varastoa.
+
+        Returns:
+            Palauttaa True/False riippuen onnistuiko suitsukkeen käyttö."""
+
         if self.inventory == 0:
             return False
 

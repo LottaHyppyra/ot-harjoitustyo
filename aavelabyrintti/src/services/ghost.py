@@ -9,10 +9,10 @@ class Ghost():
 
     def __init__(self, labyrinth):
         """Luokan konstruktori.
-        
+
         Args:
             labyrinth = Labyrintti matriisi, jossa aave liikkuu.
-            
+
         """
 
         self.labyrinth = labyrinth

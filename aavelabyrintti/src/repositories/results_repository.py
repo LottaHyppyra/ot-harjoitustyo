@@ -1,22 +1,22 @@
 from db import connection
 
-class Results_repository():
+class ResultsRepository():
     """Tulosten tietokantaoperaatioista vastaava luokka.
     """
 
-    def __init__(self, connection):
+    def __init__(self, conn):
         """Luokan konstruktori.
 
         Args:
             connection: tietokantayhteys
         """
-        
-        self.cursor = connection.cursor()
-        self.connection = connection
+
+        self.connection = conn
+        self.cursor = self.connection.cursor()
 
     def add_result_to_database(self, name, moves):
         """Lisää tuloksen tietokantaan.
-        
+
         Args:
             name: pelaajan nimi.
             moves: siirtojen määrä.
@@ -38,4 +38,4 @@ class Results_repository():
 
         return results
 
-results_repository = Results_repository(connection)
+results_repository = ResultsRepository(connection)
