@@ -199,7 +199,7 @@ class Game():
                         if moved:
                             self.counter += 1
 
-                        if not_smudged and moved and self.player.get_coords() is not None:
+                        if not_smudged and moved and self.player_is_alive():
                             self.ghost.move(self.player.get_coords())
 
                         if not_smudged is False:
