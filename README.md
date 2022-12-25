@@ -4,9 +4,7 @@ Aavelabyrintissa pelaajan tulee löytää ulos labyrintista jäämättä kiinni 
 
 ## Dokumentaatio
 
-- [Release 1](https://github.com/LottaHyppyra/ot-harjoitustyo/releases/tag/viikko5)
-
-- [Release 2](https://github.com/LottaHyppyra/ot-harjoitustyo/releases/tag/viikko6)
+- [Loppupalautus](https://github.com/LottaHyppyra/ot-harjoitustyo/releases/tag/loppupalautus)
 
 - [Työaikakirjanpito](https://github.com/LottaHyppyra/ot-harjoitustyo/blob/master/aavelabyrintti/dokumentaatio/tyoaikakirjanpito.md)
 
