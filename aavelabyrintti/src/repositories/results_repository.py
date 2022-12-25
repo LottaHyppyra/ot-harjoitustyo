@@ -1,7 +1,16 @@
 from db import connection
 
 class Results_repository():
+    """Tulosten tietokantaoperaatioista vastaava luokka.
+    """
+
     def __init__(self, connection):
+        """Luokan konstruktori.
+
+        Args:
+            connection: tietokantayhteys
+        """
+        
         self.cursor = connection.cursor()
         self.connection = connection
 
