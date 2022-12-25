@@ -16,4 +16,6 @@
 | 10.12. | 4    | toimiva tietokantayhteys, tulosten lisääminen tietokantaan |
 | 11.12. | 4    | nimen syöttö, nimen ja siirtojen tallennus tietokantaan, tulostaulu |
 | 13.13. | 3    | refaktorointia |
-| yht.   | 26   | |
+| 23.12. | 1    | refaktorointia |
+| 25.12. | 3    | refaktorointia, dokumentaation viimeistely |
+| yht.   | 41   | |
