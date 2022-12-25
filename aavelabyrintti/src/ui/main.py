@@ -1,11 +1,11 @@
 import pygame
 import pygame_textinput
 import random
-from repositories.results_repository import results_repository
+from services.results import Results
 from entities.map_list import *
 from images.images import Images
-from player import Player
-from ghost import Ghost
+from services.player import Player
+from services.ghost import Ghost
 
 class Game():
     """Luokka, joka huolehtii pelin käyttöliittymästä.
@@ -22,6 +22,7 @@ class Game():
         self.images = Images()
         self.player = Player(MAP1)
         self.ghost = Ghost(MAP1)
+        self.results = Results()
         self.pics = self.images.download_images()
         self.scale = self.pics[0].get_width()
         self.screen_height = self.scale * len(self.map)
@@ -115,7 +116,7 @@ class Game():
 
 
         click = False
-        results = results_repository.get_sorted_results()
+        results = self.results.sorted_results()
 
         while True:
             self.screen.fill((227, 227, 227))
@@ -226,7 +227,7 @@ class Game():
                 if is_won:
                     self.print_won()
                     if self.name != "":
-                        results_repository.add_result_to_database(self.name, self.counter)
+                        self.results.add_result(self.name, self.counter)
                         self.name = ""
 
                 else:

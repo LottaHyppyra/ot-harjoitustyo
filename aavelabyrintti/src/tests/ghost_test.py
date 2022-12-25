@@ -1,5 +1,5 @@
 import unittest
-from ghost import Ghost
+from services.ghost import Ghost
 
 
 class TestGhost(unittest.TestCase):

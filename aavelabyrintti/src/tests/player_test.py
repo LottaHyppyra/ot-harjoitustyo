@@ -1,5 +1,5 @@
 import unittest
-from player import Player
+from services.player import Player
 
 class TestPlayer(unittest.TestCase):
     def setUp(self):
