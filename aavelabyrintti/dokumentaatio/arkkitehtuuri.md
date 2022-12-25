@@ -12,7 +12,7 @@ Käyttöliittymän eri näkymät on toteutettu tiedostossa src/ui/main.py luokas
 
 ## Luokkakaavio
 
-![luokkakaavio](https://github.com/LottaHyppyra/ot-harjoitustyo/blob/master/aavelabyrintti/dokumentaatio/kuvat/luokkakaavio.jpg)
+![luokkakaavio](https://github.com/LottaHyppyra/ot-harjoitustyo/blob/master/aavelabyrintti/dokumentaatio/kuvat/luokkakaavio.jpeg)
 
 ## Sekvenssikaavio
 
