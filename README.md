@@ -18,12 +18,38 @@ Aavelabyrintissa pelaajan tulee löytää ulos labyrintista jäämättä kiinni 
 
 - [Käyttöohje](https://github.com/LottaHyppyra/ot-harjoitustyo/blob/master/aavelabyrintti/dokumentaatio/kayttoohje.md)
 
+## Asennus
+
+1. Asenna pelin vaatimat riippuvuudet:
+
+```bash
+poetry install
+```
+
+2. Alusta tietokanta:
+
+```bash
+poetry run invoke build
+```
+
+3. Käynnistä peli:
+
+```bash
+poetry run invoke start
+```
+
 ## Komentorivitoiminnot
 
 Ohjelman suorittaminen:
 
 ```bash
 poetry run invoke start
+```
+
+Tietokannan alustaminen:
+
+```bash
+poetry run invoke build
 ```
 
 Testien ajaminen:
