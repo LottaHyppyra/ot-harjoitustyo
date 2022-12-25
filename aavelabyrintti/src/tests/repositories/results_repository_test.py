@@ -14,4 +14,4 @@ class TestResultsRepository(unittest.TestCase):
     def test_sort_results(self):
         self.test_results_repository.add_result_to_database("Testi", 30)
         self.test_results_repository.add_result_to_database("Testi", 50)
-        self.assertEqual(self.test_results_repository.get_sorted_results()[0][1], 50)
+        self.assertEqual(self.test_results_repository.get_sorted_results()[0][1], 30)
